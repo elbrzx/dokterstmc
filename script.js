@@ -116,3 +116,27 @@ auth.onAuthStateChanged(user => {
     dokterList.innerHTML = `<h2 style="text-align:center; margin-top:30px;">Silakan login untuk melihat daftar dokter</h2>`;
   }
 });
+
+//--- Tambah Dokter di Firestorm --- //
+const addDoctorForm = document.getElementById('addDoctorForm');
+
+addDoctorForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const doctorName = document.getElementById('doctorName').value;
+  const specialization = document.getElementById('specialization').value;
+
+  // Simpan data dokter ke Firestore
+  db.collection('doctors').add({
+    name: doctorName,
+    specialization: specialization,
+  })
+  .then(() => {
+    alert('Dokter berhasil ditambahkan!');
+    addDoctorForm.reset();
+    loadDokter(); // Reload daftar dokter
+  })
+  .catch((error) => {
+    console.error('Error adding doctor: ', error);
+  });
+});
