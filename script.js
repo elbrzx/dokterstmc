@@ -101,12 +101,13 @@ auth.onAuthStateChanged(user => {
     loginBtn.classList.add('hidden');
     registerBtn.classList.add('hidden');
 
-    dokterList.innerHTML = `<h2 style="text-align:center; margin-bottom:20px;">Welcome, ${user.email}!</h2>`; 
-
+    dokterList.innerHTML = `<h2 style="text-align:center; margin-bottom:20px;">Welcome, ${user.email}!</h2>`;
+    
+    // Cek apakah admin login
     if (user.email === 'admin@stmc.com') {
-      adminPanel.classList.remove('hidden');
+      adminPanel.classList.remove('hidden'); // Tampilkan form tambah dokter
     }
-    loadDokter();
+    loadDokter(); // Load daftar dokter
   } else {
     logoutBtn.classList.add('hidden');
     loginBtn.classList.remove('hidden');
