@@ -1,0 +1,114 @@
+// CONFIG Firebase kamu (ganti ini pakai yang dari Firebase project-mu ya beb)
+const firebaseConfig = {
+  apiKey: "ISI-DENGAN-API-KEY-MU",
+  authDomain: "ISI-DENGAN-AUTH-DOMAIN-MU",
+  projectId: "ISI-DENGAN-PROJECT-ID-MU",
+  storageBucket: "ISI-DENGAN-STORAGE-BUCKET-MU",
+  messagingSenderId: "ISI-DENGAN-SENDER-ID-MU",
+  appId: "ISI-DENGAN-APP-ID-MU"
+};
+
+// Init Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// DOM Elements
+const loginBtn = document.getElementById('loginBtn');
+const registerBtn = document.getElementById('registerBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const authSection = document.getElementById('authSection');
+const submitAuth = document.getElementById('submitAuth');
+const authTitle = document.getElementById('authTitle');
+const dokterList = document.getElementById('dokterList');
+const adminPanel = document.getElementById('adminPanel');
+const namaDokter = document.getElementById('namaDokter');
+const spesialisDokter = document.getElementById('spesialisDokter');
+const jadwalDokter = document.getElementById('jadwalDokter');
+const tambahDokterBtn = document.getElementById('tambahDokterBtn');
+
+let isLogin = true;
+
+// Event Listener
+loginBtn.addEventListener('click', () => {
+  authSection.classList.remove('hidden');
+  authTitle.innerText = "Login";
+  isLogin = true;
+});
+registerBtn.addEventListener('click', () => {
+  authSection.classList.remove('hidden');
+  authTitle.innerText = "Daftar";
+  isLogin = false;
+});
+logoutBtn.addEventListener('click', () => {
+  auth.signOut();
+});
+
+// Submit login/register
+submitAuth.addEventListener('click', () => {
+  const email = document.getElementById('emailInput').value;
+  const password = document.getElementById('passwordInput').value;
+
+  if (isLogin) {
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => authSection.classList.add('hidden'))
+      .catch(err => alert(err.message));
+  } else {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(() => authSection.classList.add('hidden'))
+      .catch(err => alert(err.message));
+  }
+});
+
+// Tambah dokter (admin only)
+tambahDokterBtn.addEventListener('click', () => {
+  const nama = namaDokter.value;
+  const spesialis = spesialisDokter.value;
+  const jadwal = jadwalDokter.value;
+
+  db.collection('dokter').add({ nama, spesialis, jadwal })
+    .then(() => {
+      namaDokter.value = "";
+      spesialisDokter.value = "";
+      jadwalDokter.value = "";
+      alert("Dokter baru berhasil ditambahkan!");
+      loadDokter();
+    });
+});
+
+// Load semua dokter
+function loadDokter() {
+  dokterList.innerHTML = '';
+  db.collection('dokter').get().then(snapshot => {
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      dokterList.innerHTML += `
+        <div class="doctor-card">
+          <h3>${data.nama}</h3>
+          <p>${data.spesialis}</p>
+          <p class="jadwal">${data.jadwal}</p>
+        </div>
+      `;
+    });
+  });
+}
+
+// Cek Auth State
+auth.onAuthStateChanged(user => {
+  if (user) {
+    logoutBtn.classList.remove('hidden');
+    loginBtn.classList.add('hidden');
+    registerBtn.classList.add('hidden');
+
+    // Cek apakah email admin
+    if (user.email === 'admin@dokter.com') {
+      adminPanel.classList.remove('hidden');
+    }
+  } else {
+    logoutBtn.classList.add('hidden');
+    loginBtn.classList.remove('hidden');
+    registerBtn.classList.remove('hidden');
+    adminPanel.classList.add('hidden');
+  }
+  loadDokter();
+});
