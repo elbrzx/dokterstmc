@@ -1,0 +1,17 @@
+[
+  {
+    "nama": "Dr. Aditya Raka",
+    "spesialis": "Dokter Umum",
+    "jadwal": "Senin & Rabu, 09.00 - 12.00"
+  },
+  {
+    "nama": "Dr. Lisa Mariana",
+    "spesialis": "Spesialis Anak",
+    "jadwal": "Selasa & Kamis, 10.00 - 13.00"
+  },
+  {
+    "nama": "Dr. Budi Wijaya",
+    "spesialis": "Spesialis Jantung",
+    "jadwal": "Rabu & Jumat, 08.00 - 11.00"
+  }
+]
