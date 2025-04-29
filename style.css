@@ -86,30 +86,33 @@ body {
   background-color: #003f7d;
 }
 
+/* Admin Panel */
 .admin-panel {
-  background: white;
-  padding: 2rem;
-  margin-bottom: 2rem;
+  display: none; /* Hidden by default */
+  padding: 20px;
+  background-color: white;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
 }
 
-.admin-panel input {
+.admin-panel h3 {
+  color: #005bac;
+  font-size: 1.5rem;
+}
+
+.admin-panel input,
+.admin-panel button {
   width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  padding: 12px;
+  margin-bottom: 10px;
   border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
 .admin-panel button {
-  width: 100%;
   background-color: #28a745;
   color: white;
-  border: none;
-  padding: 0.8rem;
-  font-weight: 600;
-  border-radius: 5px;
   cursor: pointer;
 }
 
