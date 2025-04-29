@@ -1,136 +1,45 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jadwal Praktek Dokter</title>
-  <link href="style.css" rel="stylesheet">
-  <script defer src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jadwal Praktik Dokter</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 </head>
+
 <body>
-  <header class="header">
-    <h1 class="logo">Jadwal Dokter</h1>
-    <nav class="nav">
-      <button id="btnLogin" class="nav-btn">Login</button>
-      <button id="btnRegister" class="nav-btn">Daftar</button>
-      <button id="btnLogout" class="nav-btn hidden">Logout</button>
-    </nav>
-  </header>
+  <div class="header">
+    <div class="logo">🏥 Jadwal Dokter</div>
+    <div>
+      <button id="loginBtn" class="nav-btn">Login</button>
+      <button id="registerBtn" class="nav-btn">Daftar</button>
+      <button id="logoutBtn" class="nav-btn hidden">Logout</button>
+    </div>
+  </div>
 
-  <main class="main">
-    <section id="authSection" class="auth-form hidden">
-      <h2 id="authTitle">Login / Daftar</h2>
-      <input type="email" id="email" placeholder="Email" />
-      <input type="password" id="password" placeholder="Password" />
-      <button id="authAction">Submit</button>
-    </section>
+  <div class="main">
+    <div id="authSection" class="auth-form hidden">
+      <h2 id="authTitle">Login</h2>
+      <input type="email" id="emailInput" placeholder="Email">
+      <input type="password" id="passwordInput" placeholder="Password">
+      <button id="submitAuth">Submit</button>
+    </div>
 
-    <section id="doctorList" class="doctor-grid">
-      <!-- Dokter card -->
-    </section>
+    <div id="adminPanel" class="admin-panel hidden">
+      <h2>Tambah Jadwal Dokter</h2>
+      <input type="text" id="namaDokter" placeholder="Nama Dokter">
+      <input type="text" id="spesialisDokter" placeholder="Spesialis">
+      <input type="text" id="jadwalDokter" placeholder="Jadwal Praktik">
+      <button id="tambahDokterBtn">Tambah</button>
+    </div>
 
-    <section id="adminPanel" class="admin-panel hidden">
-      <h2>Admin Panel - Tambah Dokter</h2>
-      <input type="text" id="namaDokter" placeholder="Nama Dokter" />
-      <input type="text" id="spesialis" placeholder="Spesialisasi" />
-      <input type="text" id="jadwal" placeholder="Jadwal (cth: Senin & Rabu, 09.00 - 12.00)" />
-      <button id="tambahDokter">Tambah</button>
-    </section>
-  </main>
+    <div id="dokterList" class="doctor-grid"></div>
+  </div>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyC5YJEUBV0niiGq6WqMuFImJpONv71yryg",
-      authDomain: "dokter-stmc.firebaseapp.com",
-      projectId: "dokter-stmc",
-      storageBucket: "dokter-stmc.firebasestorage.app",
-      messagingSenderId: "900695521336",
-      appId: "1:900695521336:web:1336c23e5ad75dd8600ecd",
-      measurementId: "G-Z3KLTBCVE0"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    const authSection = document.getElementById('authSection');
-    const btnLogin = document.getElementById('btnLogin');
-    const btnRegister = document.getElementById('btnRegister');
-    const btnLogout = document.getElementById('btnLogout');
-    const authTitle = document.getElementById('authTitle');
-    const authAction = document.getElementById('authAction');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const doctorList = document.getElementById('doctorList');
-    const adminPanel = document.getElementById('adminPanel');
-
-    let registerMode = false;
-
-    btnLogin.onclick = () => {
-      authSection.classList.remove('hidden');
-      registerMode = false;
-      authTitle.textContent = 'Login';
-    }
-    btnRegister.onclick = () => {
-      authSection.classList.remove('hidden');
-      registerMode = true;
-      authTitle.textContent = 'Daftar';
-    }
-
-    authAction.onclick = async () => {
-      const email = emailInput.value;
-      const pass = passwordInput.value;
-      if (registerMode) {
-        await auth.createUserWithEmailAndPassword(email, pass);
-      } else {
-        await auth.signInWithEmailAndPassword(email, pass);
-      }
-    }
-
-    btnLogout.onclick = () => auth.signOut();
-
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        btnLogin.classList.add('hidden');
-        btnRegister.classList.add('hidden');
-        btnLogout.classList.remove('hidden');
-        authSection.classList.add('hidden');
-
-        if (user.email === 'elbrzx@gmail.com') {
-          adminPanel.classList.remove('hidden');
-        }
-
-        doctorList.innerHTML = '';
-        db.collection('dokter').onSnapshot(snapshot => {
-          doctorList.innerHTML = '';
-          snapshot.forEach(doc => {
-            const data = doc.data();
-            const card = `
-              <div class="doctor-card">
-                <h3>${data.nama}</h3>
-                <p>${data.spesialis}</p>
-                <p class="jadwal">${data.jadwal}</p>
-              </div>`;
-            doctorList.innerHTML += card;
-          });
-        });
-      } else {
-        btnLogin.classList.remove('hidden');
-        btnRegister.classList.remove('hidden');
-        btnLogout.classList.add('hidden');
-        adminPanel.classList.add('hidden');
-      }
-    });
-
-    document.getElementById('tambahDokter').onclick = () => {
-      const nama = document.getElementById('namaDokter').value;
-      const spesialis = document.getElementById('spesialis').value;
-      const jadwal = document.getElementById('jadwal').value;
-      if (nama && spesialis && jadwal) {
-        db.collection('dokter').add({ nama, spesialis, jadwal });
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
