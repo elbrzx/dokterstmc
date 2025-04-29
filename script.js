@@ -1,12 +1,13 @@
 // CONFIG Firebase kamu (ganti ini pakai yang dari Firebase project-mu ya beb)
 const firebaseConfig = {
-  apiKey: "ISI-DENGAN-API-KEY-MU",
-  authDomain: "ISI-DENGAN-AUTH-DOMAIN-MU",
-  projectId: "ISI-DENGAN-PROJECT-ID-MU",
-  storageBucket: "ISI-DENGAN-STORAGE-BUCKET-MU",
-  messagingSenderId: "ISI-DENGAN-SENDER-ID-MU",
-  appId: "ISI-DENGAN-APP-ID-MU"
-};
+      apiKey: "AIzaSyC5YJEUBV0niiGq6WqMuFImJpONv71yryg",
+      authDomain: "dokter-stmc.firebaseapp.com",
+      projectId: "dokter-stmc",
+      storageBucket: "dokter-stmc.firebasestorage.app",
+      messagingSenderId: "900695521336",
+      appId: "1:900695521336:web:1336c23e5ad75dd8600ecd",
+      measurementId: "G-Z3KLTBCVE0"
+    };
 
 // Init Firebase
 firebase.initializeApp(firebaseConfig);
