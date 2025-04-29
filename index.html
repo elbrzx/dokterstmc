@@ -3,41 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jadwal Praktik Dokter</title>
+  <title>Jadwal Praktek Dokter</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Firebase App (core) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 </head>
-
 <body>
-  <div class="header">
-    <div class="logo">Jadwal Dokter STMC</div>
-    <div>
-      <button id="loginBtn" class="nav-btn">Login</button>
-      <button id="registerBtn" class="nav-btn">Daftar</button>
-      <button id="logoutBtn" class="nav-btn hidden">Logout</button>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1>STMC Clinic</h1>
+    <div class="nav-buttons">
+      <button id="loginBtn">Login</button>
+      <button id="registerBtn">Daftar</button>
+      <button id="logoutBtn" class="hidden">Logout</button>
     </div>
+  </nav>
+
+  <!-- Welcome Text -->
+  <div id="welcomeText"></div>
+
+  <!-- Admin Panel -->
+  <div id="adminPanel" class="admin-panel hidden">
+    <h2>Tambah Dokter</h2>
+    <form id="addDoctorForm">
+      <input type="text" id="doctorName" placeholder="Nama Dokter" required />
+      <input type="text" id="specialization" placeholder="Spesialisasi" required />
+      <button type="submit">Tambah Dokter</button>
+    </form>
   </div>
 
-  <div class="main">
-    <div id="authSection" class="auth-form hidden">
-      <h2 id="authTitle">Login</h2>
-      <input type="email" id="emailInput" placeholder="Email">
-      <input type="password" id="passwordInput" placeholder="Password">
-      <button id="submitAuth">Masuk</button>
-    </div>
+  <!-- Daftar Dokter -->
+  <div id="dokterList" class="dokter-list"></div>
 
-    <div id="adminPanel" class="admin-panel hidden">
-      <h2>Tambah Jadwal Dokter</h2>
-      <input type="text" id="namaDokter" placeholder="Nama Dokter">
-      <input type="text" id="spesialisDokter" placeholder="Spesialis">
-      <input type="text" id="jadwalDokter" placeholder="Jadwal Praktik">
-      <button id="tambahDokterBtn">Tambah Dokter</button>
+  <!-- Modal Login/Register -->
+  <div id="authModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Login</h2>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button id="submitAuth">Submit</button>
+      <button id="closeModal">Close</button>
     </div>
-
-    <div id="dokterList" class="doctor-grid"></div>
   </div>
 
   <script src="script.js"></script>
