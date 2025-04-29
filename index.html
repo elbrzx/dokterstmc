@@ -1,52 +1,53 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jadwal Praktek Dokter</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
   <!-- Navbar -->
   <nav class="navbar">
-    <h1>STMC Clinic</h1>
-    <div class="nav-buttons">
-      <button id="openModalButton" class="btn-primary">Login / Daftar</button>
+    <div class="container">
+      <div class="logo">STMC Hospital</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Doctors</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><button id="openModalButton" class="btn-primary">Login / Daftar</button></li>
+      </ul>
     </div>
   </nav>
 
-  <!-- Welcome Text -->
-  <div id="welcomeText"></div>
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Selamat Datang di STMC Hospital</h1>
+    <p>Kami hadir untuk kesehatan Anda</p>
+  </header>
 
-  <!-- Admin Panel -->
-  <div id="adminPanel" class="admin-panel hidden">
-    <h2>Tambah Dokter</h2>
-    <form id="addDoctorForm">
-      <input type="text" id="doctorName" placeholder="Nama Dokter" required />
-      <input type="text" id="specialization" placeholder="Spesialisasi" required />
-      <button type="submit">Tambah Dokter</button>
-    </form>
+  <!-- List Dokter -->
+  <section class="doctors-list">
+    <h2>Dokter Kami</h2>
+    <div id="dokterContainer">
+      <!-- Nanti data dokter muncul di sini -->
+      <p>Silahkan login untuk melihat jadwal dokter.</p>
+    </div>
+  </section>
+
+  <!-- Modal Login/Register -->
+  <div id="authModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Login</h2>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button id="submitAuth">Submit</button>
+      <button id="closeModal" class="btn-secondary" style="margin-top:10px;">Close</button>
+    </div>
   </div>
-
-  <!-- Daftar Dokter -->
-  <div id="dokterList" class="dokter-list"></div>
-
-<!-- Modal Login/Register -->
-<div id="authModal" class="modal hidden">
-  <div class="modal-content">
-    <h2 id="modalTitle">Login</h2>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button id="submitAuth">Masuk</button>
-    <button id="closeModal" style="background-color: grey; margin-top: 5px;">Close</button>
-  </div>
-</div>
 
   <script src="script.js"></script>
+
 </body>
 </html>
