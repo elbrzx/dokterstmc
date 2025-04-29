@@ -35,13 +35,11 @@ let isLogin = true;
 loginBtn.addEventListener('click', () => {
   isLogin = true;
   modalTitle.innerText = 'Login';
-  authModal.classList.remove('hidden');
 });
 
 registerBtn.addEventListener('click', () => {
   isLogin = false;
   modalTitle.innerText = 'Daftar';
-  authModal.classList.remove('hidden');
 });
 
 closeModal.addEventListener('click', () => {
