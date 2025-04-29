@@ -128,3 +128,18 @@ function loadDokter() {
     });
   });
 }
+const authModal = document.getElementById('authModal');
+const openModalButton = document.getElementById('openModalButton'); // Tombol buat buka modal login
+const closeModalButton = document.getElementById('closeModal');
+
+if (openModalButton) {
+  openModalButton.addEventListener('click', () => {
+    authModal.classList.remove('hidden');
+  });
+}
+
+if (closeModalButton) {
+  closeModalButton.addEventListener('click', () => {
+    authModal.classList.add('hidden');
+  });
+}
