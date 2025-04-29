@@ -113,7 +113,7 @@ auth.onAuthStateChanged(user => {
     loginBtn.classList.remove('hidden');
     registerBtn.classList.remove('hidden');
     adminPanel.classList.add('hidden');
-    dokterList.innerHTML = `<h2 style="text-align:left; margin-top:30px;">Silakan login untuk melihat daftar dokter</h2>`;
+    dokterList.innerHTML = `<h2 style="text-align:right; margin-top:30px;">Silakan login untuk melihat daftar dokter</h2>`;
   }
 });
 
