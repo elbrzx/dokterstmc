@@ -101,15 +101,17 @@ auth.onAuthStateChanged(user => {
     loginBtn.classList.add('hidden');
     registerBtn.classList.add('hidden');
 
-    // Cek apakah email admin
-    if (user.email === 'admin@dokter.com') {
+    dokterList.innerHTML = `<h2 style="text-align:center; margin-bottom:20px;">Welcome, ${user.email}!</h2>`; 
+
+    if (user.email === 'admin@stmc.com') {
       adminPanel.classList.remove('hidden');
     }
+    loadDokter();
   } else {
     logoutBtn.classList.add('hidden');
     loginBtn.classList.remove('hidden');
     registerBtn.classList.remove('hidden');
     adminPanel.classList.add('hidden');
+    dokterList.innerHTML = `<h2 style="text-align:center; margin-top:30px;">Silakan login untuk melihat daftar dokter</h2>`;
   }
-  loadDokter();
 });
