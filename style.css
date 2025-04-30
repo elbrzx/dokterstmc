@@ -47,6 +47,13 @@ body {
   text-align: center;
 }
 
+.s-title-homepage-text {
+  text-align: left;
+  max-width: 600px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
 .s-title-homepage-text h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
