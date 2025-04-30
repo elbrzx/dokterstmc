@@ -34,16 +34,49 @@ body {
 }
 
 .s-image {
-  background-image: url('bg-hero.jpg');
+  background-image: url('bg-hero.jpg'); /* ganti dengan nama file Anda */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
-  color: white;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.s-title-homepage-text h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.s-sub-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.s-title-main {
+  font-size: 1.25rem;
+  margin: 0.25rem 0;
+}
+
+/* Responsive font for mobile */
+@media (max-width: 768px) {
+  .s-title-homepage-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .s-sub-title {
+    font-size: 1.25rem;
+  }
+
+  .s-title-main {
+    font-size: 1rem;
+  }
 }
 
 main {
