@@ -16,19 +16,24 @@ const loginBtn = document.getElementById('loginBtn');
 const registerBtn = document.getElementById('registerBtn');
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
+const authForms = document.getElementById('authForms');
 const welcomeDiv = document.getElementById('welcome');
 const userNameSpan = document.getElementById('userName');
 
+// Menampilkan pop-up login atau daftar
 loginBtn.addEventListener('click', () => {
+  authForms.classList.remove('hidden');  // Tampilkan pop-up login/daftar
   loginForm.classList.remove('hidden');
   registerForm.classList.add('hidden');
 });
 
 registerBtn.addEventListener('click', () => {
+  authForms.classList.remove('hidden');  // Tampilkan pop-up login/daftar
   registerForm.classList.remove('hidden');
   loginForm.classList.add('hidden');
 });
 
+// Menangani form pendaftaran
 registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -51,12 +56,14 @@ registerForm.addEventListener('submit', (e) => {
       alert('Verifikasi email telah dikirim. Silakan cek inbox.');
       registerForm.reset();
       registerForm.classList.add('hidden');
+      authForms.classList.add('hidden');
     })
     .catch((error) => {
       alert(error.message);
     });
 });
 
+// Menangani form login
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -67,9 +74,10 @@ loginForm.addEventListener('submit', (e) => {
     .then((userCredential) => {
       if (!userCredential.user.emailVerified) {
         alert('Silakan verifikasi email Anda terlebih dahulu.');
-        auth.signOut();
+        auth.signOut();  // Logout jika email belum diverifikasi
       } else {
         loginForm.classList.add('hidden');
+        authForms.classList.add('hidden');
         document.querySelector('.nav-links').classList.add('hidden');
         userNameSpan.textContent = userCredential.user.displayName;
         welcomeDiv.classList.remove('hidden');
@@ -79,3 +87,12 @@ loginForm.addEventListener('submit', (e) => {
       alert(error.message);
     });
 });
+
+// Menangani logout
+function logout() {
+  auth.signOut().then(() => {
+    welcomeDiv.classList.add('hidden');
+    document.querySelector('.nav-links').classList.remove('hidden');
+    authForms.classList.add('hidden');
+  });
+}
