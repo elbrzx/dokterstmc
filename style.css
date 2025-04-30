@@ -52,6 +52,13 @@ body {
   max-width: 600px;
   margin-left: 0;
   margin-right: auto;
+  padding-left: 4rem; /* tambahkan padding jika terlalu mepet */
+}
+
+@media (min-width: 768px) {
+  .s-title-homepage-text {
+    padding-left: 4rem;
+  }
 }
 
 .s-title-homepage-text h1 {
