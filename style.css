@@ -39,6 +39,7 @@ body, html {
   background-repeat: no-repeat;
   width: 100vw;
   min-height: 100vh;
+  z-index: 1;
 
   margin: 0;
   padding: 0;
@@ -169,27 +170,21 @@ button[type="submit"]:hover {
   margin-top: 2rem;
 }
 
+/* Posisi pop-up di atas semua elemen lainnya */
 #authForms {
     display: none; /* Menyembunyikan pop-up ketika tidak digunakan */
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Menempatkan pop-up di tengah layar */
+    transform: translate(-50%, -50%);
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Pastikan pop-up berada di atas elemen lainnya */
-    width: 300px; /* Sesuaikan lebar pop-up sesuai kebutuhan */
+    z-index: 1000; /* Pop-up berada di atas elemen lainnya */
+    width: 300px;
     box-sizing: border-box;
-}
-
-#authForms form {
-    display: block;
-}
-
-#authForms.hidden {
-    display: none; /* Menyembunyikan form */
+    max-width: 100%;
 }
 
 /* Gaya untuk tombol login dan register */
