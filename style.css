@@ -33,11 +33,17 @@ body {
   cursor: pointer;
 }
 
-.main-header img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  max-height: 400px;
+.s-image {
+  background-image: url('bg-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 main {
