@@ -34,7 +34,7 @@ body {
 }
 
 .s-image {
-  background-image: url('/assets/bg-landing.png'); /* ganti dengan nama file Anda */
+  background-image: url('assets/bg-landing.png'); /* ganti dengan nama file Anda */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
