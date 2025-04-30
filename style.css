@@ -5,12 +5,15 @@ body, html {
 }
 
 .navbar {
+  position: fized;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   background-color: #1000d8; /* Siloam blue */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk pemisah */
   color: white;
+  z-index: 1000;
 }
 
 .navbar .logo {
