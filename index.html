@@ -1,53 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jadwal Praktek Dokter</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-  <!-- Navbar -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STMC - Semen Tonasa Medical Center</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script defer src="script.js"></script>
+</head>
+
+<body>
   <nav class="navbar">
-    <div class="container">
-      <div class="logo">STMC Hospital</div>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Doctors</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><button id="openModalButton" class="btn-primary">Login / Daftar</button></li>
-      </ul>
+    <div class="logo">STMC</div>
+    <div class="nav-links">
+      <button id="loginBtn">Login</button>
+      <button id="registerBtn">Daftar</button>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1>Selamat Datang di STMC Hospital</h1>
-    <p>Kami hadir untuk kesehatan Anda</p>
+  <header class="main-header">
+    <img src="header-image.jpg" alt="STMC Banner" />
   </header>
 
-  <!-- List Dokter -->
-  <section class="doctors-list">
-    <h2>Dokter Kami</h2>
-    <div id="dokterContainer">
-      <!-- Nanti data dokter muncul di sini -->
-      <p>Silahkan login untuk melihat jadwal dokter.</p>
+  <main>
+    <div id="authForms">
+      <form id="registerForm" class="hidden">
+        <h2>Daftar</h2>
+        <input type="text" id="regName" placeholder="Nama" required />
+        <input type="email" id="regEmail" placeholder="Email" required />
+        <input type="password" id="regPassword" placeholder="Password" required />
+        <input type="password" id="regConfirmPassword" placeholder="Verifikasi Password" required />
+        <button type="submit">Daftar</button>
+      </form>
+
+      <form id="loginForm" class="hidden">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
     </div>
-  </section>
 
-  <!-- Modal Login/Register -->
-  <div id="authModal" class="hidden">
-    <div class="modal-content">
-      <h2 id="modalTitle">Login</h2>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button id="submitAuth">Submit</button>
-      <button id="closeModal" class="btn-secondary" style="margin-top:10px;">Close</button>
+    <div id="welcome" class="hidden">
+      <h2>Halo, <span id="userName"></span></h2>
     </div>
-  </div>
-
-  <script src="script.js"></script>
-
+  </main>
 </body>
+
 </html>
