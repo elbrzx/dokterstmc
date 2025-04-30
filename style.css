@@ -124,7 +124,7 @@ body, html {
 }
 
 main {
-  padding: 2rem;
+  padding: 0rem;
 }
 
 form {
@@ -182,9 +182,9 @@ button[type="submit"]:hover {
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Pop-up berada di atas elemen lainnya */
+    z-index: 999; /* Pop-up berada di atas elemen lainnya */
     width: 300px;
     box-sizing: border-box;
     max-width: 100%;
@@ -200,6 +200,12 @@ button[type="submit"]:hover {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+}
+
+/* Form dalam pop-up */
+#authForms form {
+    display: flex;
+    flex-direction: column;
 }
 
 #authForms form button:hover {
