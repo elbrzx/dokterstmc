@@ -39,12 +39,21 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
+
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  color: white;
-  text-align: center;
+  
+  /* Hapus padding & margin bawaan */
+  padding: 0;
+  margin: 0;
+
+  /* Nempel kanan kiri */
+  width: 100vw;
+  
+  /* Nempel ke atas tanpa celah */
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .s-title-homepage-text {
