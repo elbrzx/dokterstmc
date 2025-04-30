@@ -2,7 +2,6 @@ body, html {
   font-family: 'Nunito Sans', sans-serif;
   margin: 0;
   padding: 0;
-  background: #f9f9f9;
 }
 
 .navbar {
@@ -36,26 +35,22 @@ body, html {
 .s-image {
   background-image: url('assets/bg-landing.png'); /* ganti dengan nama file Anda */
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
   width: 100vw;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
 
   display: flex;
   align-items: center;
-  
-  padding: 2rem 1,5rem;
-  box-sizing: border-box
-  color: white;
-  positifon: relative;
 
-  /* Nempel kanan kiri */
-  width: 100vw;
-  
-  /* Nempel ke atas tanpa celah */
+  /* Penting agar tidak dibatasi container */
   position: relative;
-  top: 0;
   left: 0;
+  top: 0;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
